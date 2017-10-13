@@ -7,6 +7,15 @@ $subtitle-grey: #999;
 $heading-font: 'Oswald', Helvetica, Arial, sans-serif;
 $content-font: 'Source Sans Pro', Helvetica, Arial, sans-serif;
 
+// This mixin provides a fancier clearfix than using the overflow property!
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -51,7 +60,8 @@ article {
 }
 
 article > header {
-  overflow: auto;
+  @include clearfix;
+  // overflow: auto;
 }
 
 .home {
@@ -62,7 +72,7 @@ article > header {
 
 .hero-block {
   position: relative;
-  overflow: hidden; }
+  @include clearfix; }
   .hero-logo-container {
     float: left;
     width: 25%;
@@ -93,13 +103,3 @@ article > header {
   .article-title > h2 {
       font-size: 1.2em;
       color: $subtitle-grey; }
-
-
-// This mixin provides a fancier clearfix than using the overflow property!
-@mixin clearfix {
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
